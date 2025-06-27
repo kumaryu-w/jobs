@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>applicant index</title>
+</head>
+<body>
+  <h2>応募者一覧</h2>
+    {% for user_id, name, total_score in users %}
+      <p>得点: {{ "%.3f"|format(total_score) }} 応募者名: {{ name }}</p>
+      <form action="{{ url_for('applicants', user_id=user_id) }}"
+            method="post"
+            style="display:inline; margin-left:8px;">
+          <button type="submit" style="display:inline; margin-left:8px;">詳細</button>
+      </form><br>
+    {% else %}
+      <h3>現在の応募者はありません</h3>
+    {% endfor %}
+  </ul>
+  </form>
+</body>
+</html>

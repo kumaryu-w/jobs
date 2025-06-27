@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>applicant</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h3>得点 : {{ "%.3f"|format(user_datas['total_score']) }}</h3>
+            <p>job_abst1_score: {{ "%.3f"|format(user_datas['job_abst1_score']) }}</p>
+            <p>job_abst2_score: {{ "%.3f"|format(user_datas['job_abst2_score']) }}</p>
+            <p>job_abst3_score: {{ "%.3f"|format(user_datas['job_abst3_score']) }}</p>
+            <p>job_abst4_score: {{ "%.3f"|format(user_datas['job_abst1_score']) }}</p>
+            <p>job_appeal_score: {{ "%.3f"|format(user_datas['job_appeal_score']) }}</p>
+        </div>
+        <div>
+            <h3>名前</h3>
+            <p>{{ user_datas['name'] }}</p>
+            <h3>アピール文</h3>
+            <p>{{ user_datas['appeal'] }}</p>
+            <h3>最終学歴</h3>
+            <p>{{ user_datas['degree'] }}</p>
+            <h3>メールアドレス</h3>
+            <p>{{ user_datas['email'] }}</p>
+            <h3>電話番号</h3>
+            <p>{{ user_datas['telephone'] }}</p>
+        </div>
+        <div>
+            <h3>アピール論文</h3>
+            {% for key in ["1", "2", "3"] %}
+            <div>
+                <h4>{{ user_datas['abstract' ~ key|string ~ '_titel'] }}</h4>
+                <p>abstract</p>
+                <p>{{ user_datas['abstract' ~ key|string] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+        <h3>履歴書</h3>
+            <form action="{{ url_for('download_blob', tabel_name='users', id=user_id, pdf_key='resume') }}" method="post">
+                <button type="submit">履歴書のダウンロード</button>
+            </form>
+        </div>
+    </div>
+        <div>
+            <br><br>
+            <form action="{{ url_for('delete_db', tabel_name='users', job_id=user_datas['job_id'], user_id=user_id) }}" method="post">
+                <button type="submit">削除する</button>
+            </form>
+        </div>
+
+    
+</body>
+</html>

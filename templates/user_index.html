@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user index</title>
+</head>
+<body>
+  <h2>現在公開中の求人</h2>
+    {% for job_id, title in jobs %}
+      <h3><a href="{{ url_for('application', job_id=job_id) }}">{{ title }}</a></h3>
+    {% else %}
+      <h3>現在の求人はありません</h3>
+    {% endfor %}
+  </ul>
+  </form>
+</body>
+</html>

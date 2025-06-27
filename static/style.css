@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ccc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; 
+}
+
+.chat-container {
+    position: relative; /* 親要素にrelativeを設定 */
+    width: 80%;
+    max-width: 90vw;
+    height: 80%;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: auto;  */
+}
+
+.talk-container {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ccc;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    white-space: pre-wrap; /* 改行を反映させる */
+    word-wrap: break-word;
+}
+
+.message.bot {
+    background-color: #e0e0e0;
+    align-self: flex-start;
+}
+
+.message.user {
+    background-color: #c9ffc9;
+    align-self: flex-end;
+}
+
+.input-container {
+    width: 95%;
+    display: flex;
+    justify-content: center;  /* Horizontally centers the child elements */
+    align-items: center;      /* Vertically centers the child elements */
+    padding: 10px;
+    background-color: #ccc;
+    margin: 0 auto;           /* Centers the input container itself within its parent container */
+}
+
+.send-button {
+    margin-left: 10px;
+    width: 70px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#user-input {
+    height: 50px;
+    width: 100%; /* 横幅を300pxに設定 */
+    padding: 10px; /* 内側の余白を設定して入力しやすくする */
+    font-size: 16px; /* 文字のサイズを設定 */
+    border-radius: 5px; /* 角を丸くする（オプション） */
+    border: 1px solid #ccc; /* ボーダーのスタイルを設定 */
+}
+
+.product-information-container {
+    width: 80%;
+    display: flex;
+    padding: 10px;
+    background-color: #e0e0e0;
+    border: 3px solid #595959;
+    border-radius: 20px; /* 角を丸くしたい場合は追加 */
+    margin-bottom: 20px; 
+}
+
+.title-wrapper {
+    display: flex;            /* フレックスボックスを使用 */
+    justify-content: center;  /* 水平方向に中央揃え */
+    align-items: center;      /* 垂直方向にも中央揃え（必要に応じて） */
+    width: 100%;              /* 親要素いっぱいに広げる */
+}
+
+.spinner {
+    display: block;
+    border: 2px solid rgba(0, 0, 0, 0.1);  /* ボーダーの太さを小さく */
+    border-left-color: #4b9cdb;            /* 色の調整 */
+    border-radius: 50%;
+    width: 10px;  /* スピナーの幅 */
+    height: 10px; /* スピナーの高さ */
+    animation: spin 1.0s linear infinite;
+    margin: 10px auto;
+}
+
+.product_container {
+    border: 3px solid #6b6a6a71; /* ボーダーカラーを調整 */
+    border-radius: 10px; /* ボーダーの角を丸める */
+    background-color: #1babc16f; /* 背景色を調整 */
+    padding: 20px; /* 内側の余白 */
+    display: flex; /* フレックスボックスを使用 */
+    flex-direction: column; /* 子要素を縦方向に配置 */
+    gap: 15px; /* 各商品間の間隔 */
+    align-items: center; /* 子要素を中央揃え */
+    margin: 5px auto 5px 0;
+}
+
+.product {
+    display: flex; /* 横並びにする */
+    justify-content: space-between; /* 左右に要素を配置 */
+    align-items: center; /* 上下中央揃え */
+    background-color: #ffffff; /* 背景色を白に */
+    border: 1px solid #cccccc; /* 枠線 */
+    border-radius: 10px; /* ボーダーの角を丸める */
+    padding: 10px 15px; /* 内側の余白 */
+    width: 90%; /* カードの幅 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* シャドウを追加 */
+    max-width: 500px; /* 商品アイテムの最大幅を設定 */
+}
+
+.product p {
+    margin: 0; /* 商品名の余白をなくす */
+    font-size: 16px; /* 商品名の文字サイズを調整 */
+    font-weight: bold; /* 商品名を強調 */
+    color: #333333; /* 文字色を落ち着いた色に */
+}
+
+.buy-button {
+    background-color: #0099cc; /* ボタンの背景色 */
+    color: #ffffff; /* ボタンの文字色 */
+    border: none; /* ボーダーを消す */
+    padding: 5px 10px; /* ボタンの余白 */
+    border-radius: 5px; /* ボタンの角を丸める */
+    cursor: pointer; /* カーソルをポインターに */
+    font-size: 14px; /* ボタンの文字サイズ */
+    transition: background-color 0.3s ease; /* ホバー時のスムーズな色変更 */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+

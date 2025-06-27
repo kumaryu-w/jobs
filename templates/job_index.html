@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>master home</title>
+</head>
+<body>
+  <h2>登録された求人<h2>
+    {% for job_id, title in jobs %}
+      <h3>
+        {{ title }}
+        <form action="{{ url_for('job_info_manage', job_id=job_id) }}"
+              method="post"
+              style="display:inline; margin-left:8px;">
+          <button type="submit">詳細</button>
+        </form>
+      </h3>    
+    {% else %}
+      <p>現在の求人はありません</p>
+    {% endfor %}
+  
+  <div>
+    <br>
+    <form action="/add_job" method="post">
+      <button type="submit">求人を登録する</button>
+    </form>
+  </div>
+  
+
+</body>
+</html>

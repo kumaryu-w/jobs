@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>job application</title>
+</head>
+<body>
+    <div>
+        <h3>求人タイトル</h3>
+        <p>{{ job_datas['titel'] }}</p>
+        <h3>求人内容</h3>
+        <p>{{ job_datas['job_overview'] }}</p>
+        <h3>求める学位</h3>
+        <p>{{ job_datas['degree'] }}</p>
+        <br>
+    </div>
+    <div>
+        <form id='form' action="{{ url_for('resept_user_info', job_id=job_id) }}" method="post" enctype="multipart/form-data">
+            <h2>応募フォーム</h2>
+            <h3>名前</h3>
+            <input type="text" name="name" required></input>
+            <h3>自己アピール欄(~65,000字)</h3>
+            <textarea type="text" name="appeal" required></textarea>
+            <h3>最終学歴</h3>
+            <select name="degree">
+                <option value="修士">修士</option>
+                <option value="博士">博士</option>
+                <option value="学士">学士</option>
+                <option value="その他">その他</option>
+            </select>
+            <h3>メールアドレス</h3>
+            <input type="email" name="email" required></input>
+            <h3>電話番号</h3>
+            <input type="number" name="telephone" required></input>
+            <h3>履歴書</h3>
+            <input type="file" name="resume" required></input>
+        
+        <div>
+            <h3>あなたの魅力が伝わる代表的な論文(3つ指定)</h3>
+            <p>論文タイトルとAbstractをテキストで貼り付けてください。難しい場合、現在の研究分野に近い論文でも可</p>
+            {% for key in ["1", "2", "3"] %}
+            <div>
+                <p>論文{{ key }}のタイトル</p>
+                <input type="text" name="abstract{{ key }}_titel" required></input>
+                <p>論文{{ key }}のabstract</p>
+                <textarea type="text" name="abstract{{ key }}" required></textarea>        
+            </div>
+            {% endfor %}
+        </div>
+            <br>
+            <br>
+            <button type="submit">登録</button>
+        </form>
+
+
+    </div>    
+</body>
+<script>
+  const form = document.getElementById('form');
+  var is_send = false
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    if (!is_send) {
+        is_send = true
+        fetch(form.action, {
+            method: form.method.toUpperCase(),
+            body: data
+            })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(res.statusText);
+          }
+        console.log("サーバー処理が終了しました。");
+        is_send = false
+            })
+        .catch(err => {
+          console.error("送信エラー:", err);
+            });
+      alert("応募内容が送信されました。");
+      form.reset();
+    } else {
+    alert("送信が混み合っています。しばらく時間をおいてもう一度お願いします。");
+    }
+  })
+</script>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>job registration</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h3>求人タイトル</h3>
+            <p>{{ job_datas['titel'] }}</p>
+            <h3>求人内容</h3>
+            <p>{{ job_datas['job_overview'] }}</p>
+            <h3>求める学位</h3>
+            <p>{{ job_datas['degree'] }}</p>
+        </div>
+        <div>
+            <h3>求人のモデル論文</h3>
+            {% for key in ["1", "2", "3", "4"] %}
+            <div>
+                <h4>{{ job_datas['abstract' ~ key|string ~ '_titel'] }}</h4>
+                <p>abstract</p>
+                <p>{{ job_datas['abstract' ~ key|string] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+    <div><br>
+        <h3>現在の登録いただけた候補者</h3>
+        <form action="{{ url_for('applicant_index', job_id=job_id) }}" method="post" target="_blank">
+            <button type="submit">一覧表示</button>
+        </form>
+        
+    </div>
+    <div>
+        <br><br>
+        <form action="{{ url_for('delete_db', tabel_name='jobs', job_id=job_id, user_id=0) }}" method="post">
+            <button type="submit">この求人を削除する</button>
+        </form>
+    </div>
+    
+
+
+
+
+    
+</body>
+</html>

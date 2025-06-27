@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add_jobs</title>
+</head>
+<body>
+    <form action="/add_db_job" method="post" enctype="multipart/form-data">
+        <p>募集タイトル(~320字)</p>
+        <input type="text" name="titel" required></input>
+        <P>募集要項を書いてください(~65,535字)</P>
+        <textarea type="text" name="job_overview" required></textarea>
+        <P>求める学位</P>
+        <select name="degree">
+            <option value="修士">修士</option>
+            <option value="博士">博士</option>
+            <option value="学士">学士</option>
+            <option value="なし">なし</option>
+        </select>
+        <div>
+            <h3>求める能力に最も近い論文(4つ指定)</h3>
+            <p>論文タイトルとAbstractをテキストで貼り付けてください。</p>
+            {% for key in ["1", "2", "3", "4"] %}
+            <div>
+                <p>論文{{ key }}のタイトル</p>
+                <input type="text" name="abstract{{ key }}_titel" required></input>
+                <p>論文{{ key }}のabstract</p>
+                <textarea type="text" name="abstract{{ key }}" required></textarea>     
+            </div>
+            {% endfor %}
+        </div>
+        <br><br>
+        <button type="submit">登録</button>
+    </form>
+</body>
+</html>
