@@ -216,6 +216,6 @@ def get_users_id(job_id):
     return titles
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 
