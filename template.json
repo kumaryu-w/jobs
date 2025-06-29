@@ -11,7 +11,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "app.main",
-        "CodeUri": "/",
+        "CodeUri": ".",
 
         "Events": {
           "ApiEvent": {
